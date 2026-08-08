@@ -50,6 +50,19 @@ const LAYOUTS: Record<ScalableStation, StationLayout> = {
   },
 };
 
+/**
+ * Where the structural columns stand, so an overlay drawn on top of this scene
+ * can be occluded by them instead of floating through them. Columns occupy
+ * x..x+20 and y 50..112 including the base.
+ */
+export function concoursePillars(station: ScalableStation): number[] {
+  return LAYOUTS[station].pillars;
+}
+
+export const PILLAR_WIDTH = 20;
+export const PILLAR_TOP = 50;
+export const PILLAR_FOOT = 112;
+
 /** A standing traveller silhouette, drawn small so it reads as background. */
 function Figure({
   x,

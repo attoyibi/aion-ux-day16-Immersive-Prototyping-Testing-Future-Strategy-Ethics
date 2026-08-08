@@ -39,10 +39,19 @@ progress* button clears every one of those keys behind a confirm step.
 Platform 7* — is printed above the viewport and never changes, so maturity is
 the only variable. The same product is then built four times.
 
-The **Concept Idea** is a real innovation-board submission: claim bullets, an
-assumption box, and an attachment layer carrying a three-person persona set
-(primary, secondary, and the person the concept quietly excludes) plus three
-annotated low-fidelity wireframes. Every attachment opens a detail popup, and
+The **Concept Idea** is a real innovation-board submission. Three annotated
+low-fidelity wireframes lead the slide, in the position a hero rendering would
+normally take, and say so in as many words: sketch fidelity is the floor a
+concept submission has to clear, and clearing it is enough. Under them sit the
+claim bullets, the assumption box, and an attachment layer carrying a
+three-person persona set (primary, secondary, and the person the concept
+quietly excludes). A *Learn more* link beside the attachment heading opens a
+reference popup carrying the whole fidelity ladder — paper sketch, low, mid and
+high — with what each rung can and cannot answer, plus the wireframe / mockup /
+prototype distinction. Each rung carries a worked sample, and all four samples
+draw the same screen so that fidelity is the only variable, the same device the
+Ladder itself uses for maturity. The samples are inline SVG like everything
+else here: no image files, no external requests. Every frame and every persona opens a detail popup, and
 every *product* element is a real button that does nothing — reading the deck
 works, the product does not, which is why the readout stays at 0 of 6.
 
@@ -55,11 +64,19 @@ notes* popup listing what is wired, what is faked and what a test would watch
 for. The happy path genuinely works; the five deviations each land in a
 handled dead end.
 
-The **Pilot** has a real consent gate whose decline button routes to a working
-alternative, a dashboard driven by the learner's own session, and the study
-behind the numbers attached as documentation — design, sampling, participant
-composition, who is *not* represented, how the baseline was measured, and what
-the pilot cannot tell you.
+The **Pilot** is deliberately the best-built thing in the tab, because that is
+what a pilot is: released software, versioned and instrumented, not a rougher
+prototype. It runs inside field chrome carrying a build number, a live
+telemetry strip and a participant count; the destination list shows real
+services and live departures; and the route is walked in beats rather than
+jumped, guided by extruded waypoint chevrons that recede along the concourse
+floor and bend where the route turns, under a head-up display. It has a real
+consent gate whose decline button routes to a working alternative — and drops
+the app into logging-off mode — a dashboard driven by the learner's own
+session, and the study behind the numbers attached as documentation: design,
+sampling, participant composition, who is *not* represented, how the baseline
+was measured, and what the pilot cannot tell you. The scope line under the
+device carries the actual limit, which is population and place, never craft.
 
 The **Scalable Solution** really does switch to German, really does
 reconfigure across three stations, and prints both its governance and its
@@ -67,7 +84,7 @@ operations: release and rollback, what is monitored by whom at what frequency,
 and a runbook for the people who will operate it after the team leaves.
 
 Beside each stage
-sits the **gate rail**: 21 gates, all switched on, each of which visibly damages
+sits the **gate rail**: 22 gates, all switched on, each of which visibly damages
 the live product when switched off. Every gate's micro-card carries a worked
 weak-versus-strong example of the same artefact and a pointer to where the gate
 can be seen at work in the current stage. Beneath it sits the **stress bar**, six
@@ -99,6 +116,15 @@ the generated Decision Summary into the worksheet.
 The **Task Map** strip under the tab bar maps worksheet sections A–D to where
 each is answered, and carries both category taxonomies.
 
+Beneath it, the **UX Design Process** strip prints the seven-step method the
+course works inside — Problem/Product Definition, Roadmap, Research, Analyze,
+Design, Validation, Handover — as an inline SVG rail plus a written breakdown
+of each step: the question it answers, what the team does, the artefact that
+has to leave the step, and where that step is visible in this app. It closes on
+the distinction the room most often collapses: the process is *how the team
+works* and runs identically at every level of maturity, while the ladder is
+*how far the product has got*.
+
 ## Determinism
 
 Every learner on every device sees identical content in identical order and
@@ -120,7 +146,7 @@ Not linked from any rendered route:
 ```
 app/         layout, tab router, globals.css, inline icon
 components/  shell · ladder (+ stages, citypass) · bench · room · assessment
-content/     ladder · gates · dossiers · stressMatrix · testbench · portfolio · nextworld · categories
+content/     ladder · gates · dossiers · stressMatrix · testbench · portfolio · nextworld · categories · uxProcess
 lib/         types · storage · format · quarterEngine
 ```
 

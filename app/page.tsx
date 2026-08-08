@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { TabBar } from "@/components/shell/TabBar";
 import { TaskMapStrip } from "@/components/shell/TaskMapStrip";
+import { UxProcessStrip } from "@/components/shell/UxProcessStrip";
 import { ProgressDots } from "@/components/shell/ProgressDots";
 import { LadderTab } from "@/components/ladder/LadderTab";
 import { BenchTab } from "@/components/bench/BenchTab";
@@ -36,6 +37,7 @@ export default function Page() {
     <main className="mx-auto max-w-6xl px-4 pb-10">
       <TabBar active={activeTab} onChange={setActiveTab} />
       <TaskMapStrip />
+      <UxProcessStrip />
       <ProgressDots done={progress} />
 
       <div className="min-h-[720px]">

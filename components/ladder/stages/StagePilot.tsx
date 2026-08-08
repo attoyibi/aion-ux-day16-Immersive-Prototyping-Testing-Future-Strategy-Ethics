@@ -1,10 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PILOT_COPY, PROTOTYPE_COPY, PROTOTYPE_DESTINATIONS } from "@/content/ladder";
+import {
+  PILOT_BUILD_META,
+  PILOT_COPY,
+  PROTOTYPE_COPY,
+  PROTOTYPE_DESTINATIONS,
+  PROTOTYPE_DESTINATION_DETAIL,
+} from "@/content/ladder";
 import { ConcourseSvg } from "../citypass/ConcourseSvg";
-import { ArrowOverlay } from "../citypass/ArrowOverlay";
+import { ArrowOverlay3D } from "../citypass/ArrowOverlay3D";
 import { ConsentModal } from "../citypass/ConsentModal";
+import { FieldFrame } from "../citypass/FieldFrame";
 import {
   EMPTY_COUNTERS,
   PilotDashboard,
@@ -40,6 +47,12 @@ export function StagePilot({
   const [signalLost, setSignalLost] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [refusal, setRefusal] = useState<string | null>(null);
+  /** Index into PILOT_COPY.walkBeats: the route is walked, not jumped. */
+  const [walk, setWalk] = useState(0);
+
+  const beats = PILOT_COPY.walkBeats;
+  const beat = beats[Math.min(walk, beats.length - 1)]!;
+  const lastBeat = walk >= beats.length - 1;
 
   const allowDecline = gates["G3.3"];
 
@@ -98,189 +111,265 @@ export function StagePilot({
           }
         >
           {consent === "declined" ? (
-            <div className="space-y-3">
-              <p className="aion-readout text-navy">
-                {PILOT_COPY.declinedMode}
-              </p>
-              <div className="rounded-card border border-hairline bg-lilac p-4">
-                <p className="text-small uppercase tracking-wide text-muted">
-                  Text directions
+            <FieldFrame screenLabel="Signage mode" recording={false}>
+              <div className="space-y-3">
+                <p className="aion-readout text-navy">
+                  {PILOT_COPY.declinedMode}
                 </p>
-                <p className="text-body text-navy">
-                  {PILOT_COPY.declinedFallback}
-                </p>
+                <div className="rounded-card border border-hairline bg-lilac p-4">
+                  <p className="text-small uppercase tracking-wide text-muted">
+                    Text directions
+                  </p>
+                  <p className="text-body text-navy">
+                    {PILOT_COPY.declinedFallback}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="aion-btn"
+                  onClick={() => {
+                    bump({
+                      completed: counters.completed + 1,
+                      sessions: counters.sessions + 1,
+                      totalTurns: counters.totalTurns + 3,
+                    });
+                    announce(
+                      "Task completed using the printed-signage equivalent.",
+                    );
+                    setNotice(
+                      "Task completed without the app. The alternative path works.",
+                    );
+                  }}
+                >
+                  I reached Platform 7 this way
+                </button>
+                <button
+                  type="button"
+                  className="aion-btn"
+                  onClick={() => setConsent("pending")}
+                >
+                  Review the consent question again
+                </button>
               </div>
-              <button
-                type="button"
-                className="aion-btn"
-                onClick={() => {
-                  bump({
-                    completed: counters.completed + 1,
-                    sessions: counters.sessions + 1,
-                    totalTurns: counters.totalTurns + 3,
-                  });
-                  announce(
-                    "Task completed using the printed-signage equivalent.",
-                  );
-                  setNotice(
-                    "Task completed without the app. The alternative path works.",
-                  );
-                }}
-              >
-                I reached Platform 7 this way
-              </button>
-              <button
-                type="button"
-                className="aion-btn"
-                onClick={() => setConsent("pending")}
-              >
-                Review the consent question again
-              </button>
-            </div>
+            </FieldFrame>
           ) : null}
 
           {consent === "agreed" && screen === "A" ? (
-            <div className="space-y-2">
-              <h3 className="text-d3 font-bold text-navy">
-                {PROTOTYPE_COPY.screenATitle}
-              </h3>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {PROTOTYPE_DESTINATIONS.map((destination) => (
-                  <button
-                    key={destination}
-                    type="button"
-                    className={`aion-btn ${
-                      selected === destination
-                        ? "border-purple bg-lilac font-bold"
-                        : ""
-                    }`}
-                    onClick={() => {
-                      setSelected(destination);
-                      setScreen("B");
-                      setSignalLost(false);
-                      setNotice(null);
-                      bump({ sessions: counters.sessions + 1 });
-                      announce(`Route to ${destination} started.`);
-                    }}
-                  >
-                    {destination}
-                  </button>
-                ))}
+            <FieldFrame screenLabel="Select destination">
+              <div className="space-y-2">
+                <h3 className="text-d3 font-bold text-navy">
+                  {PROTOTYPE_COPY.screenATitle}
+                </h3>
+                <ul className="space-y-2">
+                  {PROTOTYPE_DESTINATIONS.map((destination) => {
+                    const detail =
+                      PROTOTYPE_DESTINATION_DETAIL[destination] ?? null;
+                    return (
+                      <li key={destination}>
+                        <button
+                          type="button"
+                          aria-label={`${destination}. ${detail?.service ?? ""} ${detail?.departs ?? ""}. ${detail?.walk ?? ""}`}
+                          className={`aion-btn w-full flex-col items-stretch gap-[2px] px-3 py-2 text-left ${
+                            selected === destination
+                              ? "border-purple bg-lilac"
+                              : ""
+                          }`}
+                          onClick={() => {
+                            setSelected(destination);
+                            setScreen("B");
+                            setWalk(0);
+                            setSignalLost(false);
+                            setNotice(null);
+                            bump({ sessions: counters.sessions + 1 });
+                            announce(`Route to ${destination} started.`);
+                          }}
+                        >
+                          <span className="flex flex-wrap items-baseline justify-between gap-x-2">
+                            <span className="text-body font-bold text-navy">
+                              {destination}
+                            </span>
+                            <span className="aion-readout text-purple">
+                              {detail?.departs}
+                            </span>
+                          </span>
+                          <span className="text-small text-navy">
+                            {detail?.service}
+                          </span>
+                          <span className="aion-readout text-muted">
+                            {detail?.walk}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <p className="flex items-center gap-[6px] text-small text-muted">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-[6px] w-[6px] rounded-full bg-ok aion-pulse"
+                  />
+                  {PILOT_BUILD_META.feedLive} · all 4 routes built, monitored
+                  and rolled out to every participant.
+                </p>
               </div>
-              <p className="aion-readout text-muted">
-                All 4 destinations are implemented at this stage.
-              </p>
-            </div>
+            </FieldFrame>
           ) : null}
 
           {consent === "agreed" && screen === "B" ? (
-            <div className="space-y-3">
-              <h3 className="text-d3 font-bold text-navy">
-                {PROTOTYPE_COPY.screenBTitle}
-              </h3>
-              <div className="relative h-[220px] overflow-hidden rounded-card border border-hairline">
-                <ConcourseSvg />
-                {signalLost || arrowSuppressed ? null : (
-                  <ArrowOverlay label={`${selected} — 90m`} />
-                )}
-                {signalLost || arrowSuppressed ? (
-                  <div className="absolute inset-0 flex items-center justify-center p-4">
-                    <div className="rounded-card border border-hairline bg-white p-3 text-center">
-                      <p className="text-body text-navy">
-                        {PILOT_COPY.signalLostText}
-                      </p>
-                      <button
-                        type="button"
-                        className="aion-btn mt-2"
-                        onClick={() => {
-                          setSignalLost(false);
-                          announce("Retrying. The arrow is back.");
-                        }}
-                      >
-                        Retry
-                      </button>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
+            <FieldFrame screenLabel="Route active">
+              <div className="space-y-2">
+                <div className="relative h-[280px] overflow-hidden rounded-card border border-hairline">
+                  <ConcourseSvg />
+                  {signalLost || arrowSuppressed ? null : (
+                    <ArrowOverlay3D
+                      label={selected ?? "Platform 7"}
+                      detail={beat.distance}
+                    />
+                  )}
 
-              <div className="flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  className="aion-btn aion-btn-primary"
-                  onClick={() => {
-                    setScreen("C");
-                    bump({
-                      completed: counters.completed + 1,
-                      totalTurns: counters.totalTurns + 2,
-                    });
-                    announce("You have arrived.");
-                  }}
-                >
-                  I&apos;m following the guidance
-                </button>
-                <button
-                  type="button"
-                  className="aion-btn"
-                  onClick={() => {
-                    setSignalLost(true);
-                    bump({ fallbacks: counters.fallbacks + 1 });
-                    announce(PILOT_COPY.signalLostText);
-                  }}
-                >
-                  Simulate weak signal
-                </button>
-                <button
-                  type="button"
-                  className="aion-btn"
-                  onClick={() => {
-                    setScreen("A");
-                    setNotice(PILOT_COPY.statePreserved);
-                    announce(PILOT_COPY.statePreserved);
-                  }}
-                >
-                  Back
-                </button>
-                <button
-                  type="button"
-                  className="aion-btn"
-                  onClick={() => {
-                    setScreen("A");
-                    setSelected(null);
-                    bump({ abandoned: counters.abandoned + 1 });
-                    announce("Route abandoned mid-way.");
-                  }}
-                >
-                  Give up and walk away
-                </button>
+                  {/* head-up display: the build telling you it is working */}
+                  {signalLost || arrowSuppressed ? null : (
+                    <>
+                      <div className="pointer-events-none absolute left-2 top-2 flex items-center gap-[5px] rounded-chip bg-navy/85 px-2 py-[2px] text-[11px] font-bold text-white">
+                        <span
+                          aria-hidden="true"
+                          className="inline-block h-[6px] w-[6px] rounded-full bg-[#5CE1A6] aion-pulse"
+                        />
+                        {PILOT_COPY.liveChip}
+                      </div>
+                      <div className="pointer-events-none absolute right-2 top-2 rounded-chip bg-white/85 px-2 py-[2px] text-[11px] text-navy">
+                        {PILOT_BUILD_META.tracking}
+                      </div>
+                      <div className="pointer-events-none absolute inset-x-2 bottom-2 rounded-chip bg-white/90 px-2 py-1">
+                        <p className="flex flex-wrap items-baseline justify-between gap-x-2">
+                          <span className="text-small font-bold text-navy">
+                            {beat.instruction}
+                          </span>
+                          <span className="aion-readout text-purple">
+                            {beat.distance}
+                          </span>
+                        </p>
+                        <p className="aion-readout text-muted">{beat.turns}</p>
+                      </div>
+                    </>
+                  )}
+
+                  {signalLost || arrowSuppressed ? (
+                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                      <div className="rounded-card border border-hairline bg-white p-3 text-center">
+                        <p className="text-body text-navy">
+                          {PILOT_COPY.signalLostText}
+                        </p>
+                        <button
+                          type="button"
+                          className="aion-btn mt-2"
+                          onClick={() => {
+                            setSignalLost(false);
+                            announce("Retrying. The guidance is back.");
+                          }}
+                        >
+                          Retry
+                        </button>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    className="aion-btn aion-btn-primary"
+                    onClick={() => {
+                      if (!lastBeat) {
+                        const next = walk + 1;
+                        setWalk(next);
+                        announce(
+                          `${beats[next]!.instruction}. ${beats[next]!.distance} remaining.`,
+                        );
+                        return;
+                      }
+                      setScreen("C");
+                      bump({
+                        completed: counters.completed + 1,
+                        totalTurns: counters.totalTurns + 2,
+                      });
+                      announce("You have arrived.");
+                    }}
+                  >
+                    {lastBeat
+                      ? PILOT_COPY.arriveCta
+                      : `${PILOT_COPY.walkCta} · ${beat.distance}`}
+                  </button>
+                  <button
+                    type="button"
+                    className="aion-btn"
+                    onClick={() => {
+                      setSignalLost(true);
+                      bump({ fallbacks: counters.fallbacks + 1 });
+                      announce(PILOT_COPY.signalLostText);
+                    }}
+                  >
+                    Simulate weak signal
+                  </button>
+                  <button
+                    type="button"
+                    className="aion-btn"
+                    onClick={() => {
+                      setScreen("A");
+                      setNotice(PILOT_COPY.statePreserved);
+                      announce(PILOT_COPY.statePreserved);
+                    }}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    className="aion-btn"
+                    onClick={() => {
+                      setScreen("A");
+                      setSelected(null);
+                      setWalk(0);
+                      bump({ abandoned: counters.abandoned + 1 });
+                      announce("Route abandoned mid-way.");
+                    }}
+                  >
+                    Give up and walk away
+                  </button>
+                </div>
               </div>
-            </div>
+            </FieldFrame>
           ) : null}
 
           {consent === "agreed" && screen === "C" ? (
-            <div className="space-y-3">
-              <div className="rounded-card border border-hairline bg-lilac p-4 text-center">
-                <p aria-hidden="true" className="text-d1 text-ok">
-                  ✓
-                </p>
-                <p className="text-d3 font-bold text-navy">
-                  {PROTOTYPE_COPY.screenCTitle}
-                </p>
-                <p className="aion-readout text-navy">
-                  {selected} · 90m · 2 turns
-                </p>
+            <FieldFrame screenLabel="Arrived">
+              <div className="space-y-3">
+                <div className="rounded-card border border-hairline bg-lilac p-4 text-center">
+                  <p aria-hidden="true" className="text-d1 text-ok">
+                    ✓
+                  </p>
+                  <p className="text-d3 font-bold text-navy">
+                    {PROTOTYPE_COPY.screenCTitle}
+                  </p>
+                  <p className="aion-readout text-navy">
+                    {selected} · 90m · 2 turns
+                  </p>
+                  <p className="mt-1 text-small text-muted">
+                    Session written to the pilot log.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="aion-btn"
+                  onClick={() => {
+                    setScreen("A");
+                    setWalk(0);
+                    setNotice(PILOT_COPY.statePreserved);
+                  }}
+                >
+                  Start another route
+                </button>
               </div>
-              <button
-                type="button"
-                className="aion-btn"
-                onClick={() => {
-                  setScreen("A");
-                  setNotice(PILOT_COPY.statePreserved);
-                }}
-              >
-                Start another route
-              </button>
-            </div>
+            </FieldFrame>
           ) : null}
         </div>
       </div>
@@ -322,6 +411,7 @@ export function StagePilot({
             setConsent("pending");
             setScreen("A");
             setSelected(null);
+            setWalk(0);
             setSignalLost(false);
             setNotice(null);
             setRefusal(null);
@@ -333,6 +423,15 @@ export function StagePilot({
       {refusal ? (
         <p className="aion-readout text-navy">Result: {refusal}</p>
       ) : null}
+
+      {/*
+        Said out loud, because the stage is deliberately the best-built thing
+        in the tab and a learner could read that as "further along is prettier".
+        It is not: the pilot is finished software with a small population.
+      */}
+      <p className="border-l-[3px] border-purple bg-lilac px-3 py-2 text-small text-navy">
+        {PILOT_BUILD_META.liveNote}
+      </p>
 
       <PilotDashboard counters={counters} gates={gates} />
     </div>

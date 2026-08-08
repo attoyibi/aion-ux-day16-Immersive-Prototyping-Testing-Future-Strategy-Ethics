@@ -142,6 +142,36 @@
   animation: aion-flicker 1.4s ease-in-out infinite;
 }
 
+/* Pilot route guidance: waypoints brighten in sequence, nearest first. The
+   element keeps its own opacity, so reduced motion leaves a static ramp. */
+@keyframes aion-waypoint {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.aion-waypoint {
+  animation: aion-waypoint 1.8s ease-in-out infinite;
+}
+
+@keyframes aion-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.aion-pulse {
+  animation: aion-pulse 1.6s ease-in-out infinite;
+}
+
 @media print {
   .no-print {
     display: none !important;

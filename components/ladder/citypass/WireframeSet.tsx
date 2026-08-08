@@ -1,8 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { InfoCard } from "@/components/shell/InfoCard";
-import { CONCEPT_WIREFRAMES } from "@/content/ladder";
+import { InfoCard, useInfoCard } from "@/components/shell/InfoCard";
+import { CONCEPT_WIREFRAMES, CONCEPT_WIREFRAME_BLOCK } from "@/content/ladder";
+import {
+  WIREFRAME_DEFINITION,
+  WIREFRAME_FIDELITY_RULE,
+  WIREFRAME_LADDER,
+  WIREFRAME_NEIGHBOURS,
+  WIREFRAME_SAMPLE_NOTE,
+  WIREFRAME_TWO_DIALS,
+} from "@/content/wireframeFidelity";
+import { FidelitySample } from "./FidelitySamples";
 
 const SKETCH = "#9A93BC";
 
@@ -57,17 +66,31 @@ const FRAMES = [FrameSelect, FrameOverlay, FrameArrival];
 
 export function WireframeSet() {
   const [open, setOpen] = useState<string | null>(null);
+  const fidelity = useInfoCard();
 
   return (
     <div>
       <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
         <p className="text-small uppercase tracking-wide text-muted">
-          Attached: low-fidelity wireframes (3 frames)
+          {CONCEPT_WIREFRAME_BLOCK.heading}{" "}
+          <button
+            type="button"
+            onClick={fidelity.show}
+            className="text-small normal-case tracking-normal text-purple underline underline-offset-2 hover:decoration-2"
+          >
+            {CONCEPT_WIREFRAME_BLOCK.learnMoreLabel}
+          </button>
         </p>
         <p className="text-small text-muted">
-          Sketch fidelity — structure only, no type scale, no colour
+          {CONCEPT_WIREFRAME_BLOCK.fidelityNote}
         </p>
       </div>
+
+      <FidelityCard open={fidelity.open} onClose={fidelity.hide} />
+
+      <p className="mb-2 border-l-[3px] border-purple bg-lilac px-2 py-1 text-small text-navy">
+        {CONCEPT_WIREFRAME_BLOCK.minimumNote}
+      </p>
 
       <ul className="grid gap-2 sm:grid-cols-3">
         {CONCEPT_WIREFRAMES.map((annotation, index) => {
@@ -146,5 +169,97 @@ export function WireframeSet() {
         })}
       </ul>
     </div>
+  );
+}
+
+/** One rung of the fidelity ladder: the worked sample, then what it buys. */
+function LadderRung({
+  rung,
+}: {
+  rung: (typeof WIREFRAME_LADDER)[number];
+}) {
+  const lines: [string, string][] = [
+    ["Looks like", rung.looksLike],
+    ["What it costs", rung.cost],
+    ["It can answer", rung.answers],
+    ["It cannot answer", rung.cannotAnswer],
+    ["Use it when", rung.useWhen],
+    ["The trap", rung.trap],
+  ];
+
+  return (
+    <div className="rounded-card border border-hairline p-2">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+        <p className="text-body font-bold text-navy">{rung.level}</p>
+        <p className="text-small text-muted">{rung.alsoCalled}</p>
+      </div>
+
+      <div className="mt-1 flex flex-col gap-3 sm:flex-row">
+        <div className="self-start rounded-chip border border-hairline bg-lilac/30 p-1">
+          <FidelitySample id={rung.id} />
+        </div>
+        <dl className="min-w-0 space-y-[2px]">
+          {lines.map(([label, value]) => (
+            <div key={label} className="text-small">
+              <dt className="inline uppercase tracking-wide text-muted">
+                {label} ·{" "}
+              </dt>
+              <dd className="inline text-navy">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The "Learn more" popup beside the attachment heading: what a wireframe is,
+ * the four rungs of fidelity, and how to choose between them.
+ */
+function FidelityCard({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <InfoCard
+      open={open}
+      onClose={onClose}
+      eyebrow="Reference · not part of the concept submission"
+      heading="Wireframes, and the fidelity ladder"
+      rows={[
+        { label: "What a wireframe is", value: WIREFRAME_DEFINITION },
+        {
+          label: "The four rungs, lowest first",
+          value: (
+            <div className="mt-1 space-y-2">
+              <p className="text-small text-muted">{WIREFRAME_SAMPLE_NOTE}</p>
+              {WIREFRAME_LADDER.map((rung) => (
+                <LadderRung key={rung.id} rung={rung} />
+              ))}
+            </div>
+          ),
+        },
+        {
+          label: "Wireframe, mockup, prototype",
+          value: (
+            <ul className="mt-1 space-y-[2px]">
+              {WIREFRAME_NEIGHBOURS.map((entry) => (
+                <li key={entry.term} className="text-body text-navy">
+                  <span className="font-bold">{entry.term}</span> —{" "}
+                  {entry.meaning}
+                </li>
+              ))}
+            </ul>
+          ),
+        },
+        { label: "Two dials, not one", value: WIREFRAME_TWO_DIALS },
+        { label: "Which rung to use", value: WIREFRAME_FIDELITY_RULE },
+      ]}
+      footer="This slide sits on the second rung. That is the correct rung for a concept submission — the structure is still an open argument, and a lo-fi frame is the only version anyone is still willing to redraw."
+    />
   );
 }

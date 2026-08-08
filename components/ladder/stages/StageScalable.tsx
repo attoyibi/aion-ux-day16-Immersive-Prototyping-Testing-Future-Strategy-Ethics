@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   SCALABLE_ACCESSIBILITY_OPTIONS,
+  SCALABLE_BUILD_META,
   SCALABLE_COPY,
   SCALABLE_DESTINATIONS,
   SCALABLE_LANGUAGE_OPTIONS,
@@ -11,7 +12,8 @@ import {
   type ScalableStation,
 } from "@/content/ladder";
 import { ConcourseSvg } from "../citypass/ConcourseSvg";
-import { ArrowOverlay } from "../citypass/ArrowOverlay";
+import { ArrowOverlayFleet } from "../citypass/ArrowOverlayFleet";
+import { FleetFrame } from "../citypass/FleetFrame";
 import { GovernancePanel } from "../citypass/GovernancePanel";
 import { OperationsPanel } from "../citypass/OperationsPanel";
 import { LoadMeter } from "../citypass/LoadMeter";
@@ -171,7 +173,14 @@ export function StageScalable({
         </p>
       ) : null}
 
-      {/* The live route */}
+      {/* The live route, inside release chrome */}
+      <FleetFrame
+        screenLabel={noAr ? "No-AR fallback" : "Route active"}
+        station={effectiveStation}
+        languages={configurable ? languages : "EN"}
+        accessibility={accessible ? accessibility : "Standard"}
+        connected={connected}
+      >
       {noAr ? (
         <div className="rounded-card border border-hairline bg-white p-4">
           <p className="text-small uppercase tracking-wide text-muted">
@@ -216,11 +225,7 @@ export function StageScalable({
           </svg>
         </div>
       ) : (
-        <div
-          className={`relative overflow-hidden rounded-card border border-hairline ${
-            seated ? "h-[180px]" : "h-[220px]"
-          }`}
-        >
+        <div className="relative h-[290px] overflow-hidden rounded-card border border-hairline">
           <ConcourseSvg
             station={effectiveStation}
             highContrast={highContrast}
@@ -236,14 +241,21 @@ export function StageScalable({
               </div>
             </div>
           ) : (
-            <ArrowOverlay
-              label={strings.overlay(destination)}
+            <ArrowOverlayFleet
+              station={effectiveStation}
+              destination={strings.destinationName(destination)}
+              serviceLine={connected ? "RE 4 · 12:41" : null}
+              remaining={strings.remaining}
+              stepFreeLabel={strings.stepFree}
+              liftLabel={strings.lift}
+              aheadLabel={strings.ahead}
               highContrast={highContrast}
-              scale={seated ? 1.4 : 1}
+              seated={seated}
             />
           )}
         </div>
       )}
+      </FleetFrame>
 
       {!connected ? (
         <p className="aion-readout text-navy">
@@ -269,6 +281,15 @@ export function StageScalable({
           {strings.languageNote}
         </span>
       </div>
+
+      {/*
+        Said out loud, so the jump from Pilot to Scalable is not read as
+        "the drawings got better". Nothing here is prettier than the pilot by
+        accident — it is more configurable, more operable and more accountable.
+      */}
+      <p className="border-l-[3px] border-purple bg-lilac px-3 py-2 text-small text-navy">
+        {SCALABLE_BUILD_META.liveNote}
+      </p>
 
       {/* 4b — configuration panel */}
       <div className="aion-card p-3">

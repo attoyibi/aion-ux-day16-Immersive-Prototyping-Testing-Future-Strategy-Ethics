@@ -80,11 +80,11 @@ A switched-off gate may only **lower** a cell, never raise one, and `NOT BUILT` 
 
 Composition rule: with all three governance gates off, Scalable/S6 prints — *"Nobody owns it, nobody watches it, and there is no way back."*
 
-## The 21 gates and their damage
+## The 22 gates and their damage
 
 Stage 4 rail header: *Responsible: G4.1–G4.2 · Connectable: G4.3 · Governable: G4.4–G4.6*
 
-### Concept Idea — 4 gates
+### Concept Idea — 5 gates
 
 | ID | Gate | Damage when switched OFF | Curriculum link |
 |---|---|---|---|
@@ -92,6 +92,7 @@ Stage 4 rail header: *Responsible: G4.1–G4.2 · Connectable: G4.3 · Governabl
 | G1.2 | User value stated in the user's terms | The value line is replaced by an organisational benefit. The claim bullets stay unchanged. | Nutzermehrwert · Machbarkeitsdenken vs verantwortete Strategie |
 | G1.3 | Riskiest assumption acknowledged | The assumption box vanishes entirely. Nothing else changes, so the slide reads as pure promise — it looks better with the gate off. | Investitionsrisiko · Reifegrad |
 | G1.4 | “Should we build it?” answered, not only “can we?” | The decision line is replaced by a feasibility statement, with the note “Feasibility answered. Desirability not asked.” | Unterschied technologisches Machbarkeitsdenken vs verantwortete UX-Strategie |
+| G1.5 | Every screen the idea needs is drawn | The three wireframes at the top of the slide disappear and “Visual: to be produced.” takes their place. Nothing else changes — the claims stay exactly as confident as before. | Reifegrad · Testreife |
 
 ### Prototype — 5 gates
 

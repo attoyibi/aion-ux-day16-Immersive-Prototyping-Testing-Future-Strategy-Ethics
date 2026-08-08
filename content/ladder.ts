@@ -272,6 +272,26 @@ export const CONCEPT_WIREFRAMES: WireframeAnnotation[] = [
   },
 ];
 
+/**
+ * Header copy for the wireframe set. The block sits at the top of the slide,
+ * in the position a hero rendering would normally take, because that position
+ * is exactly the argument: a lo-fi frame set is the floor a concept submission
+ * has to clear, not a decoration hung underneath it.
+ */
+export const CONCEPT_WIREFRAME_BLOCK = {
+  heading: "Attached: low-fidelity wireframes (3 frames)",
+  learnMoreLabel: "What is a wireframe? Learn more",
+  fidelityNote: "Sketch fidelity — structure only, no type scale, no colour",
+  minimumNote:
+    "This is the minimum standard for a concept submission — and sketch fidelity like this is genuinely enough to clear it. One frame per screen the idea depends on, each annotated with what is decided and what is not. No rendering, no hero image, no polish is required at this stage; what is required is that every screen the concept needs can be pointed at and argued with. A submission carrying less than this is not yet a concept, it is a sentence.",
+  /** Shown in place of the frame set when gate G1.5 is switched off. */
+  absent: {
+    heading: "Attached: no wireframes",
+    placeholder: "Visual: to be produced.",
+    note: "Nothing on this slide can be pointed at. The claims below are now the entire concept, and the room will agree with all of them — because everyone reading is picturing a different product.",
+  },
+};
+
 export const CONCEPT_DECK_META = {
   deckLabel: "Innovation board · concept submission",
   version: "Concept draft v0.3",
@@ -476,6 +496,50 @@ export const PILOT_COPY = {
   reuseRow: "Used again on a later trip: 9 of 40",
   caption:
     "A pilot produces evidence, but only about the world it was run in. Everything outside that scope is still an assumption.",
+  /**
+   * The walk is played out in beats rather than jumped, so the build behaves
+   * like something a person is actually holding while moving.
+   */
+  walkBeats: [
+    {
+      distance: "90 m",
+      instruction: "Straight ahead, past the departure board",
+      turns: "2 turns remaining",
+    },
+    {
+      distance: "55 m",
+      instruction: "Turn right at the column",
+      turns: "1 turn remaining",
+    },
+    {
+      distance: "20 m",
+      instruction: "Platform 7 is ahead on your left",
+      turns: "No turns remaining",
+    },
+  ],
+  walkCta: "Keep walking",
+  arriveCta: "I have arrived",
+  liveChip: "LIVE",
+  recChip: "REC",
+};
+
+/**
+ * The pilot is a finished product, not a rougher prototype: versioned,
+ * instrumented, monitored, running in the field every day for six weeks. The
+ * chrome says so on purpose. What limits a pilot is who and where — never what
+ * it is capable of — and the scope line under the device is the whole argument.
+ */
+export const PILOT_BUILD_META = {
+  buildLabel: "CityPass AR · pilot build 1.2.0",
+  environment: "Live at Central Interchange · week 4 of 6",
+  statusBarTime: "08:41",
+  cohort: "Participant 12 of 40",
+  recording: "Session logging on",
+  tracking: "Tracking: strong",
+  feedLive: "Live timetable feed",
+  scopeChip: "1 station · English · daytime · handheld only",
+  liveNote:
+    "Everything on this screen works, every time, for all 40 enrolled travellers. That is what separates a pilot from a prototype. What is still missing is not craft — it is everyone who was not in the 40, and everywhere that is not this station.",
 };
 
 /**
@@ -568,6 +632,12 @@ export const SCALABLE_STRINGS = {
     follow: "Follow the arrow",
     arrived: "You have arrived",
     languageNote: "Language: English",
+    /** Localised furniture for the augmented view. */
+    destinationName: (destination: string) => destination,
+    remaining: "90 m remaining",
+    stepFree: "Step-free",
+    lift: "Lift",
+    ahead: "Straight ahead, then right at the column",
   },
   de: {
     overlay: (destination: string) =>
@@ -575,7 +645,32 @@ export const SCALABLE_STRINGS = {
     follow: "Folgen Sie dem Pfeil",
     arrived: "Sie sind angekommen",
     languageNote: "Sprache: Deutsch",
+    destinationName: (destination: string) =>
+      destination.replace("Platform", "Gleis").replace("Exit", "Ausgang"),
+    remaining: "noch 90 m",
+    stepFree: "Stufenfrei",
+    lift: "Aufzug",
+    ahead: "Geradeaus, dann rechts an der Säule",
   },
+};
+
+/**
+ * Release chrome for the scaled product. Where the pilot's frame advertises
+ * that it is being measured, this one advertises that it is being operated:
+ * a release channel, a fleet, a rollback target and a name on the pager. The
+ * limit that vanished between the two stages is population — not craft.
+ */
+export const SCALABLE_BUILD_META = {
+  buildLabel: "CityPass AR · release 3.1.0",
+  channel: "PROD",
+  statusBarTime: "08:41",
+  fleet: "3 stations live",
+  volume: "18 412 sessions this week",
+  uptime: "Uptime 99.9%",
+  rollback: "Rollback 3.0.4 armed · under 20 min",
+  operator: "Operated by Station Operations · on-call 24/7",
+  liveNote:
+    "The pilot proved this works for 40 people at one station. Everything added since is what lets somebody else run it: three stations from one configuration, two languages, an accessibility mode that is a real path rather than a reduced one, a live timetable feed, and a version you can roll back to before lunch.",
 };
 
 export const SCALABLE_GOVERNANCE = {

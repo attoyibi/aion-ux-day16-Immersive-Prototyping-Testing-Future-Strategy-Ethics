@@ -99,6 +99,33 @@ export const GATES: Gate[] = [
       seeItHere: "Switch it off and read the decision line that replaces it, then read the note underneath it.",
     },
   },
+  {
+    id: "G1.5",
+    stage: "concept",
+    name: "Every screen the idea needs is drawn",
+    damage:
+      "The three wireframes at the top of the slide disappear and “Visual: to be produced.” takes their place. Nothing else changes — the claims stay exactly as confident as before.",
+    card: {
+      whatItMeans:
+        "One frame per screen the concept depends on, at the cheapest fidelity that can still be argued with.",
+      doThis:
+        "Sketch every screen the idea needs, including the ones nobody wants to draw: the empty state, the failure, and the moment it ends.",
+      avoid:
+        "A single hero rendering of the best moment, or a slide that describes its screens in prose and shows none of them.",
+      howToCheck:
+        "Count the screens the claims imply, then count the frames. The two numbers have to match.",
+      withoutIt:
+        "Everyone in the room agrees, because everyone is picturing a different product.",
+      curriculum: "Reifegrad · Testreife",
+      example: {
+        weak: "One polished render of the arrow in the concourse, from the best angle.",
+        strong:
+          "Three lo-fi frames — destination select, camera overlay, arrival — each annotated with what is decided and what is not.",
+      },
+      seeItHere:
+        "Switch it off and the frame set at the top of the slide disappears. Read the claims again: they have not changed, and they are now the entire concept.",
+    },
+  },
 
   // --- STAGE 2 -------------------------------------------------------------
   {
@@ -537,7 +564,7 @@ export function gatesForStage(stage: StageId): Gate[] {
   return GATES.filter((gate) => gate.stage === stage);
 }
 
-/** All 21 gates start ON. The stage begins healthy and the learner breaks it. */
+/** All 22 gates start ON. The stage begins healthy and the learner breaks it. */
 export const ALL_GATES_ON: GateMap = GATES.reduce((acc, gate) => {
   acc[gate.id] = true;
   return acc;

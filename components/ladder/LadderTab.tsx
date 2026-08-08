@@ -39,9 +39,21 @@ export function LadderTab() {
     "ladder.visited",
     [],
   );
-  const [gates, setGates] = usePersistentState<GateMap>(
+  const [storedGates, setStoredGates] = usePersistentState<GateMap>(
     "ladder.gates",
     ALL_GATES_ON,
+  );
+  // A map saved by an earlier session can predate a gate. Merging it over the
+  // full set keeps any gate the saved map has never heard of switched on,
+  // rather than reading its absence as "switched off".
+  const gates = useMemo<GateMap>(
+    () => ({ ...ALL_GATES_ON, ...storedGates }),
+    [storedGates],
+  );
+  const setGates = useCallback(
+    (fn: (prev: GateMap) => GateMap) =>
+      setStoredGates((prev) => fn({ ...ALL_GATES_ON, ...prev })),
+    [setStoredGates],
   );
   const [stressRuns, setStressRuns] = usePersistentState<string[]>(
     "ladder.stressRuns",

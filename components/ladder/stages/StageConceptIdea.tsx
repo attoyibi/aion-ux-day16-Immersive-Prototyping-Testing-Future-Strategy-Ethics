@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CONCEPT_DECK_META, CONCEPT_SLIDE } from "@/content/ladder";
+import {
+  CONCEPT_DECK_META,
+  CONCEPT_SLIDE,
+  CONCEPT_WIREFRAME_BLOCK,
+} from "@/content/ladder";
 import { PersonaCards } from "../citypass/PersonaCards";
 import { WireframeSet } from "../citypass/WireframeSet";
 import type { GateMap } from "@/lib/types";
@@ -47,6 +51,7 @@ export function StageConceptIdea({
   const valueInUserTerms = gates["G1.2"];
   const assumptionsShown = gates["G1.3"];
   const decisionAnswered = gates["G1.4"];
+  const screensDrawn = gates["G1.5"];
 
   function dead(label: string) {
     onInteract();
@@ -76,15 +81,14 @@ export function StageConceptIdea({
           </h3>
         </DeadElement>
 
-        <DeadElement
-          label="Hero sketch"
-          onDead={() => dead("Hero sketch")}
-          className="my-3"
-        >
-          <div className="flex justify-center bg-lilac/50 py-3">
-            <SketchPhone />
-          </div>
-        </DeadElement>
+        {/*
+          The frame set sits where a hero rendering would: it is the first
+          thing the board sees, because at this stage it is the whole of the
+          visual evidence and the floor the submission has to clear.
+        */}
+        <div className="my-3">
+          {screensDrawn ? <WireframeSet /> : <WireframesAbsent />}
+        </div>
 
         <ul className="space-y-1">
           {CONCEPT_SLIDE.claims.map((claim) => (
@@ -165,7 +169,6 @@ export function StageConceptIdea({
         */}
         <div className="mt-4 space-y-3 border-t border-hairline pt-3">
           <PersonaCards userNamed={userNamed} />
-          <WireframeSet />
           <p className="text-small text-muted">
             {CONCEPT_DECK_META.attachmentsNote}
           </p>
@@ -201,53 +204,21 @@ export function StageConceptIdea({
   );
 }
 
-/** Deliberately a sketch: dashed strokes, grey, no fills. */
-function SketchPhone() {
+/**
+ * Gate G1.5 off. The slot keeps roughly its height so the slide does not look
+ * broken — it looks thinner, which is the whole argument.
+ */
+function WireframesAbsent() {
+  const copy = CONCEPT_WIREFRAME_BLOCK.absent;
   return (
-    <svg
-      viewBox="0 0 150 120"
-      width="180"
-      height="144"
-      role="img"
-      aria-label="Wireframe sketch of a phone showing an arrow overlay"
-    >
-      <rect
-        x="45"
-        y="8"
-        width="60"
-        height="104"
-        rx="8"
-        fill="none"
-        stroke="#9A93BC"
-        strokeWidth="1.5"
-        strokeDasharray="5 4"
-      />
-      <line
-        x1="63"
-        y1="16"
-        x2="87"
-        y2="16"
-        stroke="#9A93BC"
-        strokeWidth="1.5"
-        strokeDasharray="4 3"
-      />
-      <path
-        d="M58 70 H88 M80 62 L92 70 L80 78"
-        fill="none"
-        stroke="#9A93BC"
-        strokeWidth="2.5"
-        strokeDasharray="6 4"
-        strokeLinecap="round"
-      />
-      <line
-        x1="56"
-        y1="94"
-        x2="94"
-        y2="94"
-        stroke="#9A93BC"
-        strokeWidth="1.5"
-        strokeDasharray="4 3"
-      />
-    </svg>
+    <div>
+      <p className="mb-1 text-small uppercase tracking-wide text-muted">
+        {copy.heading}
+      </p>
+      <div className="rounded-card border border-dashed border-hairline bg-lilac/30 px-3 py-8 text-center">
+        <p className="text-body text-muted">{copy.placeholder}</p>
+      </div>
+      <p className="mt-1 text-small text-muted">{copy.note}</p>
+    </div>
   );
 }
