@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #231a45;
+  --purple: #5624d0;
+  --lilac: #eee9f9;
+  --white: #ffffff;
+  --muted: #6b6785;
+  --hairline: #e4e1ee;
+  --ok: #1e7a4d;
+  --warn: #b26b00;
+  --bad: #b02a37;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--white);
+    color: var(--navy);
+    font-family: Calibri, "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--purple);
+    outline-offset: 2px;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+}
+
+@layer components {
+  .aion-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(35, 26, 69, 0.08);
+  }
+
+  .aion-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 6px;
+    border: 1px solid var(--hairline);
+    background: var(--white);
+    padding: 6px 12px;
+    font-size: 15px;
+    text-align: center;
+    transition: background-color 200ms, border-color 200ms, color 200ms;
+  }
+
+  .aion-btn:hover:not(:disabled) {
+    background: var(--lilac);
+    border-color: #cfc6ec;
+  }
+
+  .aion-btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+
+  .aion-btn-primary {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+  }
+
+  .aion-btn-primary:hover:not(:disabled) {
+    background: #4a1eb8;
+    border-color: #4a1eb8;
+    color: #fff;
+  }
+
+  .aion-readout {
+    font-family: Consolas, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+  }
+}
+
+/* Colour-vision simulation used by stress test S1. Deterministic matrix. */
+.cvd-sim {
+  filter: url(#aion-cvd-deuteranopia);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes aion-arrow-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+.aion-arrow-anim {
+  animation: aion-arrow-drift 2s ease-in-out infinite;
+}
+
+@keyframes aion-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.25;
+  }
+  70% {
+    opacity: 0.85;
+  }
+}
+
+.aion-flicker {
+  animation: aion-flicker 1.4s ease-in-out infinite;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-expand {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .aion-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: "";
+  }
+}

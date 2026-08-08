@@ -1,0 +1,103 @@
+# aion-ux-day16-maturity-lab
+
+AION UX Class · Module 7 / Day 3 of 3 · Course Day 16
+**Immersive Prototyping & Testing · Future Strategy & Ethics**
+
+A single-page learning playground for a senior executive UX class. It is a
+teaching instrument, not a product: three instruments and one graded case,
+carrying one fictional product — **CityPass AR**, an augmented-reality
+wayfinding aid for a large public transport interchange — from first slide to
+scaled operation.
+
+## Run it
+
+```bash
+npm install
+npm run dev
+```
+
+Open <http://localhost:3000>.
+
+```bash
+npm run build   # production build
+npm start       # serve the production build
+npm run typecheck
+```
+
+## Deploy it
+
+Push the repository and import it in Vercel or Netlify. There is nothing to
+configure: no backend, no database, no auth, no external API, and **zero
+environment variables**. The app is client-side only, renders as a static
+route, makes no network request at runtime, and stores progress in
+`localStorage` under the `aion.day16.*` namespace. The footer's *Reset all
+progress* button clears every one of those keys behind a confirm step.
+
+## The four tabs, and the sequence they are meant to be used in
+
+**1 · The Ladder (~12 min)** is the centrepiece. One task — *find your way to
+Platform 7* — is printed above the viewport and never changes, so maturity is
+the only variable. The same product is then built four times: a Concept Idea
+where every element is a real button and none of them does anything; a
+Prototype whose happy path genuinely works and whose five deviations each land
+in a handled dead end; a Pilot with a real consent gate whose decline button
+routes to a working alternative, and a dashboard driven by the learner's own
+session; and a Scalable Solution that really does switch to German, really does
+reconfigure to three stations, and prints its own governance. Beside each stage
+sits the **gate rail**: 21 gates, all switched on, each of which visibly damages
+the live product when switched off. Beneath it sits the **stress bar**, six
+tests run against the current stage, resolving through a documented 24-cell
+matrix that a switched-off gate can lower but never raise. The tab closes with
+the Go/No-Go meeting — one fixed evidence panel read from two seats, each of
+which gets its own failure line — and a comparison table generated from the
+learner's own state.
+
+**2 · The Test Bench (~10 min)** is not a quiz. The learner chooses exactly
+three of the six immersive test aspects, the bench runs them on CityPass AR,
+and the resulting numbers become their evidence. Whatever they did not test
+appears in the findings table as a hole worth *nothing*. They then grade their
+own rows as Anecdote, Signal or Decision-grade, and finish at the six-criteria
+strategy console, pre-filled from what they actually measured.
+
+**3 · The Portfolio Room (~10 min)** puts CityPass AR beside two siblings and
+runs four quarters. Six tension sliders share 100 points and resolve to a named
+profile that always prints what it gives up. Seven ethical events arrive as
+things that happen rather than topics to read. In Quarter 3 a consent complaint
+is upheld and the app resolves it from the learner's own governance model —
+which is where governance stops being a diagram and becomes a consequence.
+
+**4 · NextWorld UX** is the graded case and carries none of the above: no
+reveals, no hints, no verdicts, no scoring, no highlighting of the 14 planted
+flaws. It is frozen and identical for every learner. Work here, then transcribe
+the generated Decision Summary into the worksheet.
+
+The **Task Map** strip under the tab bar maps worksheet sections A–D to where
+each is answered, and carries both category taxonomies.
+
+## Determinism
+
+Every learner on every device sees identical content in identical order and
+gets identical results from identical actions. There is no `Math.random`, no
+date-dependent output and no locale-dependent number formatting anywhere —
+`lib/format.ts` groups thousands by hand rather than calling `toLocaleString`.
+All simulation outcomes come from lookup tables in `content/`.
+
+## Instructor material
+
+Not linked from any rendered route:
+
+- `FLAW_INDEX.md` — the 14 planted flaws, their exact on-screen text, category and intended conclusion.
+- `LADDER_MATRIX.md` — the full 24-cell stress matrix and all 21 gate damages, for teaching from paper.
+- `PORTFOLIO_OUTCOMES.md` — the quarter outcome table, the seven event branches and the three governance paths.
+
+## Project layout
+
+```
+app/         layout, tab router, globals.css, inline icon
+components/  shell · ladder (+ stages, citypass) · bench · room · assessment
+content/     ladder · gates · dossiers · stressMatrix · testbench · portfolio · nextworld · categories
+lib/         types · storage · format · quarterEngine
+```
+
+All teaching copy lives in `content/` as typed data. No content is hardcoded
+inside a component.
