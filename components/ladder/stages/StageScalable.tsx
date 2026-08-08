@@ -13,6 +13,7 @@ import {
 import { ConcourseSvg } from "../citypass/ConcourseSvg";
 import { ArrowOverlay } from "../citypass/ArrowOverlay";
 import { GovernancePanel } from "../citypass/GovernancePanel";
+import { OperationsPanel } from "../citypass/OperationsPanel";
 import { LoadMeter } from "../citypass/LoadMeter";
 import type { GateMap } from "@/lib/types";
 
@@ -343,6 +344,7 @@ export function StageScalable({
         gates={gates}
         highlighted={governanceHighlighted}
       />
+      <OperationsPanel gates={gates} />
       <LoadMeter runToken={loadRequestedAt} announce={announce} />
     </div>
   );

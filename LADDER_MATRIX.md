@@ -136,6 +136,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — “Every traveller”, “all users”, “the general public”.
 - **How to check it** — Read the sentence aloud. If nobody could be excluded by it, it names nobody.
 - **Without it** — You cannot design, because every design decision has an opposite that is equally defensible.
+- **Worked example — weak** — For: every traveller at the station.
+- **Worked example — strong** — For: a traveller changing platforms under time pressure at Central Interchange, during peak hours, on their own phone, with one hand on a case.
+- **See it in this stage** — Switch this gate off and watch the persona set on the concept slide collapse into a single line that names nobody.
 - **Curriculum link** — Nutzungskontext · Nutzermehrwert
 
 ### G1.2 — User value stated in the user's terms
@@ -145,6 +148,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — “Demonstrates our innovation capability.” That is value to the organisation, stated as if it were value to the user.
 - **How to check it** — Could the user themselves say this sentence about their own day?
 - **Without it** — The project optimises for visibility, and nobody notices until adoption fails.
+- **Worked example — weak** — A flagship demonstration of our innovation capability.
+- **Worked example — strong** — Saves the 90 seconds a traveller with a 6-minute connection currently spends reading overhead signage.
+- **See it in this stage** — Switch it off: the value line changes to an organisational benefit while the claim bullets stay exactly as confident as before.
 - **Curriculum link** — Nutzermehrwert · Machbarkeitsdenken vs verantwortete Strategie
 
 ### G1.3 — Riskiest assumption acknowledged
@@ -154,6 +160,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Putting uncertainty in an appendix, or removing it because the slide looks stronger without it.
 - **How to check it** — Ask: what would have to be true for this to fail completely? If there is no answer, the thinking is not finished.
 - **Without it** — The concept looks more certain than it is, and the certainty gets funded.
+- **Worked example — weak** — Risks: standard delivery risks apply. (Appendix C)
+- **Worked example — strong** — What we do not know yet: whether travellers will hold a phone up while walking. If they will not, nothing else on this slide matters.
+- **See it in this stage** — Switch it off and the assumption box disappears. Notice that the slide reads better without it.
 - **Curriculum link** — Investitionsrisiko · Reifegrad
 
 ### G1.4 — “Should we build it?” answered, not only “can we?”
@@ -163,6 +172,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Answering a desirability question with a technology answer.
 - **How to check it** — Cover every sentence about technology. Is anything left?
 - **Without it** — You build what is possible, and discover afterwards that it was not defensible.
+- **Worked example — weak** — Technically feasible with existing phone hardware.
+- **Worked example — strong** — Should we build it? Only if the station permits camera use and the printed signage stays. We are not removing an existing option.
+- **See it in this stage** — Switch it off and read the decision line that replaces it, then read the note underneath it.
 - **Curriculum link** — Unterschied technologisches Machbarkeitsdenken vs verantwortete UX-Strategie
 
 ### G2.1 — Usage context clarity (Nutzungskontext)
@@ -172,6 +184,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Demonstrating on a clean background in a quiet room. Correct output in the wrong context is not evidence.
 - **How to check it** — Could a stranger tell where they are supposed to be standing?
 - **Without it** — You test the interface and conclude something about the situation.
+- **Worked example — weak** — Demo recorded in the studio against a white cyclorama.
+- **Worked example — strong** — Demo recorded in Hall B at 08:40, with the concourse crowd, the glazed roof glare and the departure-board noise present.
+- **See it in this stage** — Switch it off: the concourse disappears and the arrow floats on white, still perfectly correct and no longer evidence of anything.
 - **Curriculum link** — Anforderungen an immersive Prototypen — Nutzungskontext
 
 ### G2.2 — Interaction clarity (Interaktionsklarheit)
@@ -181,6 +196,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Icon-only controls, hidden gestures, screens that only make sense when someone is narrating them.
 - **How to check it** — Hand it to someone who has not seen it and say nothing at all.
 - **Without it** — You measure confusion and call it a learning curve.
+- **Worked example — weak** — A row of four identical icon buttons with no labels.
+- **Worked example — strong** — “Show my route to Platform 7” as the single primary action, with the outcome named in the label.
+- **See it in this stage** — Switch it off: every control keeps working and loses its label. Nothing is disabled, which is the point.
 - **Curriculum link** — Anforderungen an immersive Prototypen — Interaktionsklarheit
 
 ### G2.3 — Technical robustness (technische Robustheit)
@@ -190,6 +208,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — A demo that only survives because the presenter knows exactly where not to press.
 - **How to check it** — Run the same session three times without touching anything between runs.
 - **Without it** — Every finding is contaminated by whether the build happened to hold that day.
+- **Worked example — weak** — It works if you don't press the arrow twice.
+- **Worked example — strong** — Two rapid presses are de-duplicated; lost tracking and lost signal each render a defined state.
+- **See it in this stage** — Switch it off and watch the arrow flicker and the distance label fall back to “--m” intermittently.
 - **Curriculum link** — Anforderungen an immersive Prototypen — technische Robustheit
 
 ### G2.4 — Resilience under load (Belastbarkeit)
@@ -199,6 +220,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Assuming that because one session worked, twenty will.
 - **How to check it** — Does anything degrade gracefully, or does everything degrade at once?
 - **Without it** — The pilot's first busy day becomes the first real test, in public.
+- **Worked example — weak** — We ran one session and it held up fine.
+- **Worked example — strong** — Sustained for the second hour at ten times the pilot's participant count, with graceful degradation defined per component.
+- **See it in this stage** — Switch it off: the session counter stalls at 12 and prints “queue stalled”, and stress test S5 is held at BREAKS.
 - **Curriculum link** — Anforderungen an immersive Prototypen — Belastbarkeit
 
 ### G2.5 — Testability (Testbarkeit)
@@ -208,6 +232,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Relying on what people say afterwards in a room with the project sponsor in it.
 - **How to check it** — If two observers watched the same session, would they write down the same numbers?
 - **Without it** — You leave the session with a feeling and present it as a result.
+- **Worked example — weak** — Everyone in the room agreed it felt faster.
+- **Worked example — strong** — Completion, errors, time to first heading, abandonment point and turn count are all recorded per session.
+- **See it in this stage** — Switch it off: every readout under the build changes to “no data captured” and the deviation counter reads “unknown”.
 - **Curriculum link** — Anforderungen an immersive Prototypen — Testbarkeit
 
 ### G3.1 — Representative participants
@@ -217,6 +244,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Testing with the innovation team, with volunteers who already like it, or with anyone who reports to the sponsor.
 - **How to check it** — Read the participant list. Would any of them lose something if this failed?
 - **Without it** — You measure enthusiasm inside your own building.
+- **Worked example — weak** — 40 volunteers from the operator's head office.
+- **Worked example — strong** — 40 travellers intercepted on the concourse, quota-balanced on age band and journey frequency, including 11 first-time users of the station.
+- **See it in this stage** — Switch it off: every number on the dashboard stays identical and one line appears naming who the participants actually were.
 - **Curriculum link** — Testreife · Akzeptanz
 
 ### G3.2 — Scope stated
@@ -226,6 +256,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Results that travel through the organisation without their limits attached.
 - **How to check it** — Could someone three levels up misread this number as general?
 - **Without it** — A narrow finding becomes a broad claim in the second retelling.
+- **Worked example — weak** — Completion rate: 68%.
+- **Worked example — strong** — Completion rate 68% — 1 station, English only, daytime, handheld, 40 participants, 6 weeks.
+- **See it in this stage** — Switch it off: the scope statement disappears and the dashboard headline quietly loses “Central Interchange, 6 weeks”.
 - **Curriculum link** — Skalierungsreife · Bewertungslogik
 
 ### G3.3 — Voluntariness has a working alternative
@@ -235,6 +268,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — A consent screen with one button. Consent that is a condition of service is not consent.
 - **How to check it** — Press decline. Can you still complete the task?
 - **Without it** — Participation is compliance, and your acceptance data is meaningless.
+- **Worked example — weak** — A consent screen with a single “I agree” button.
+- **Worked example — strong** — “I decline” routes to the printed-signage equivalent, and the task still completes. The signage stays in place for the whole pilot.
+- **See it in this stage** — Switch it off and open the consent modal: the decline button is gone and the build cannot be reached without agreeing.
 - **Curriculum link** — Ethik — Freiwilligkeit
 
 ### G3.4 — Data protection completed before start
@@ -244,6 +280,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — “Scheduled, not yet completed” in a document that also contains a rollout date.
 - **How to check it** — Compare the assessment date with the first session date.
 - **Without it** — Every data point collected is a liability, and stopping later costs more than starting later.
+- **Worked example — weak** — Data protection assessment: scheduled for week 4.
+- **Worked example — strong** — Assessment signed before session 1. Collected: position and route. Retention: 8 weeks. Access: two named analysts.
+- **See it in this stage** — Switch it off: a line appears at the top of the dashboard and absolutely nothing stops. That is the lesson.
 - **Curriculum link** — Ethik — Datenschutz · Governance
 
 ### G3.5 — Comparison baseline exists
@@ -253,6 +292,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Reporting a completion rate with nothing to compare it to.
 - **How to check it** — For every figure, ask: better than what?
 - **Without it** — Any number can be presented as a success, and usually is.
+- **Worked example — weak** — Completed routes: 27 of 40.
+- **Worked example — strong** — Completed routes 27 of 40, against 24 of 40 on the existing signage, measured the same way two weeks earlier.
+- **See it in this stage** — Switch it off: every comparison figure vanishes and the dashboard asks “better than what?”
 - **Curriculum link** — Bewertungslogik · Vergleichbarkeit
 
 ### G3.6 — Transfer to real work measured
@@ -262,6 +304,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Ending measurement when the session ends.
 - **How to check it** — Do you have any number collected after the observer left?
 - **Without it** — You have proven that it works when someone is watching.
+- **Worked example — weak** — Post-session satisfaction: 4.2 of 5.
+- **Worked example — strong** — Used again unprompted on a later trip: 9 of 40, measured at day 7 with no observer present.
+- **See it in this stage** — Switch it off: the reuse row is removed and the dashboard prints “Measured in the session only.”
 - **Curriculum link** — Testaspekt — Transfer in reale Nutzungssituationen (the aspect most often skipped and most often decisive)
 
 ### G4.1 — Accessibility and inclusion [Responsible]
@@ -271,6 +316,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Requirements that quietly exclude: “normal colour vision”, “standing position”, “two-hand controllers”.
 - **How to check it** — List the requirements. Who does each one exclude?
 - **Without it** — You scale an inequality and call it a rollout.
+- **Worked example — weak** — Requires: standing position, two hands, normal colour vision.
+- **Worked example — strong** — High-contrast overlay, seated one-handed layout, and every platform marker carries a label as well as a colour.
+- **See it in this stage** — Switch it off: high-contrast and seated mode both return “Not supported”, and stress test S1 is forced to BREAKS.
 - **Curriculum link** — Ethik — Zugänglichkeit, Inklusion · verantwortbar
 
 ### G4.2 — Configurable across contexts [Responsible]
@@ -280,6 +328,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — Hardcoding the pilot site into the product.
 - **How to check it** — Could a second site go live without the original team?
 - **Without it** — Every new context is a new project, and the portfolio never compounds.
+- **Worked example — weak** — Station name is compiled into the build.
+- **Worked example — strong** — Station, language set and accessibility mode are all configuration. A second site goes live in 3 days with no engineering.
+- **See it in this stage** — Switch it off: the configuration panel collapses to one fixed line and stress test S4 is forced to BREAKS.
 - **Curriculum link** — Skalierbarkeit · anschlussfähig
 
 ### G4.3 — Connectable to other systems [Connectable]
@@ -289,6 +340,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — A product that is excellent, ethical, governed — and an island.
 - **How to check it** — Where does its data come from, and where does it go?
 - **Without it** — It works, and it never becomes part of how the organisation operates.
+- **Worked example — weak** — Departure times are a static list maintained by hand.
+- **Worked example — strong** — The overlay reads the live timetable feed, and route completions are written back to the operations dashboard.
+- **See it in this stage** — Switch it off: the departure board stops updating and prints “static — no live timetable feed”. The route still works, and it is now an island.
 - **Curriculum link** — anschlussfähig · Organisationsfähigkeit
 
 ### G4.4 — Named decision owner [Governable]
@@ -298,6 +352,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — The same role deciding both whether it is safe and whether it ships.
 - **How to check it** — Ask who signs. If the answer is a meeting, nobody signs.
 - **Without it** — Nothing can be stopped, because stopping requires an owner.
+- **Worked example — weak** — Owner: the innovation steering group.
+- **Worked example — strong** — Scaling: Head of Passenger Experience. Ethical release: Data Protection Officer — deliberately not the same person.
+- **See it in this stage** — Switch it off: every owner row in the governance panel becomes “TBD” and stress test S6 drops to DEGRADES.
 - **Curriculum link** — Governance · governancefähig
 
 ### G4.5 — Stop rule and monitoring [Governable]
@@ -307,6 +364,9 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — “We will monitor and review regularly.”
 - **How to check it** — Could a person who was not in the room apply this rule tomorrow?
 - **Without it** — The only way out is a crisis.
+- **Worked example — weak** — We will monitor adoption and review regularly.
+- **Worked example — strong** — Withdraw if completion falls below 70% for two consecutive months, or if any consent complaint is upheld. Watched daily by Station Operations.
+- **See it in this stage** — Switch it off: the stop rule and cadence rows vanish and the product keeps running perfectly.
 - **Curriculum link** — governancefähig · Rolle verantwortlicher Führungskräfte
 
 ### G4.6 — Rollback and versioning [Governable]
@@ -316,5 +376,8 @@ Opened by clicking a gate's name in the rail. Six labelled rows each.
 - **Avoid** — A one-way rollout where withdrawal means an outage.
 - **How to check it** — How long would it take to go back, and who decides?
 - **Without it** — Every decision to scale is permanent by accident.
+- **Worked example — weak** — Rollout is one-way; withdrawal means an outage.
+- **Worked example — strong** — Running 2.4.0; 2.3.1 stays deployable and is tested weekly; rollback takes under 20 minutes and Station Operations executes it.
+- **See it in this stage** — Switch it off: version and rollback rows vanish and the panel prints “No way back.”
 - **Curriculum link** — Governance · Investitionssicherheit
 

@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { CONCEPT_SLIDE } from "@/content/ladder";
+import { CONCEPT_DECK_META, CONCEPT_SLIDE } from "@/content/ladder";
+import { PersonaCards } from "../citypass/PersonaCards";
+import { WireframeSet } from "../citypass/WireframeSet";
 import type { GateMap } from "@/lib/types";
 
 /** Every element is a real button, and none of them does anything. */
@@ -59,6 +61,15 @@ export function StageConceptIdea({
     <div className="space-y-3">
       {/* The pitch artefact, styled as an internal deck page. */}
       <article className="rounded-card border border-hairline bg-white p-4">
+        <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-3 border-b border-hairline pb-2">
+          <p className="text-small uppercase tracking-wide text-muted">
+            {CONCEPT_DECK_META.deckLabel}
+          </p>
+          <p className="aion-readout text-muted">
+            {CONCEPT_DECK_META.version} · {CONCEPT_DECK_META.author}
+          </p>
+        </div>
+
         <DeadElement label="Slide title" onDead={() => dead("Slide title")}>
           <h3 className="px-1 text-d2 font-bold text-navy">
             {CONCEPT_SLIDE.title}
@@ -66,8 +77,8 @@ export function StageConceptIdea({
         </DeadElement>
 
         <DeadElement
-          label="Wireframe sketch"
-          onDead={() => dead("Wireframe sketch")}
+          label="Hero sketch"
+          onDead={() => dead("Hero sketch")}
           className="my-3"
         >
           <div className="flex justify-center bg-lilac/50 py-3">
@@ -145,6 +156,19 @@ export function StageConceptIdea({
               </p>
             )}
           </div>
+        </div>
+
+        {/*
+          The attachment layer. These are documentation, not product: opening
+          one is reading the deck, which is why the product-behaviour readout
+          stays at 0 of 6 no matter how much of this the learner explores.
+        */}
+        <div className="mt-4 space-y-3 border-t border-hairline pt-3">
+          <PersonaCards userNamed={userNamed} />
+          <WireframeSet />
+          <p className="text-small text-muted">
+            {CONCEPT_DECK_META.attachmentsNote}
+          </p>
         </div>
 
         <div className="mt-3 border-t border-hairline pt-2">

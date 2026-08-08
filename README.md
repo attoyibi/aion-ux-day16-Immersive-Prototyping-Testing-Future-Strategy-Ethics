@@ -37,15 +37,40 @@ progress* button clears every one of those keys behind a confirm step.
 
 **1 · The Ladder (~12 min)** is the centrepiece. One task — *find your way to
 Platform 7* — is printed above the viewport and never changes, so maturity is
-the only variable. The same product is then built four times: a Concept Idea
-where every element is a real button and none of them does anything; a
-Prototype whose happy path genuinely works and whose five deviations each land
-in a handled dead end; a Pilot with a real consent gate whose decline button
-routes to a working alternative, and a dashboard driven by the learner's own
-session; and a Scalable Solution that really does switch to German, really does
-reconfigure to three stations, and prints its own governance. Beside each stage
+the only variable. The same product is then built four times.
+
+The **Concept Idea** is a real innovation-board submission: claim bullets, an
+assumption box, and an attachment layer carrying a three-person persona set
+(primary, secondary, and the person the concept quietly excludes) plus three
+annotated low-fidelity wireframes. Every attachment opens a detail popup, and
+every *product* element is a real button that does nothing — reading the deck
+works, the product does not, which is why the readout stays at 0 of 6.
+
+The **Prototype** runs inside device chrome with a status bar, a step
+indicator and the traveller's actual connection pressure. Each destination
+carries its real service, departure, walking distance and access note, so
+choosing one is a real choice. A "how to use this build" panel names the five
+things a real traveller also does, and every screen carries a *prototype
+notes* popup listing what is wired, what is faked and what a test would watch
+for. The happy path genuinely works; the five deviations each land in a
+handled dead end.
+
+The **Pilot** has a real consent gate whose decline button routes to a working
+alternative, a dashboard driven by the learner's own session, and the study
+behind the numbers attached as documentation — design, sampling, participant
+composition, who is *not* represented, how the baseline was measured, and what
+the pilot cannot tell you.
+
+The **Scalable Solution** really does switch to German, really does
+reconfigure across three stations, and prints both its governance and its
+operations: release and rollback, what is monitored by whom at what frequency,
+and a runbook for the people who will operate it after the team leaves.
+
+Beside each stage
 sits the **gate rail**: 21 gates, all switched on, each of which visibly damages
-the live product when switched off. Beneath it sits the **stress bar**, six
+the live product when switched off. Every gate's micro-card carries a worked
+weak-versus-strong example of the same artefact and a pointer to where the gate
+can be seen at work in the current stage. Beneath it sits the **stress bar**, six
 tests run against the current stage, resolving through a documented 24-cell
 matrix that a switched-off gate can lower but never raise. The tab closes with
 the Go/No-Go meeting — one fixed evidence panel read from two seats, each of

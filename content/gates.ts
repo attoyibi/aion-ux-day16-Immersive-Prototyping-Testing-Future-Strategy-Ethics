@@ -18,6 +18,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "You cannot design, because every design decision has an opposite that is equally defensible.",
       curriculum: "Nutzungskontext · Nutzermehrwert",
+      example: {
+        weak: "For: every traveller at the station.",
+        strong: "For: a traveller changing platforms under time pressure at Central Interchange, during peak hours, on their own phone, with one hand on a case.",
+      },
+      seeItHere: "Switch this gate off and watch the persona set on the concept slide collapse into a single line that names nobody.",
     },
   },
   {
@@ -38,6 +43,11 @@ export const GATES: Gate[] = [
         "The project optimises for visibility, and nobody notices until adoption fails.",
       curriculum:
         "Nutzermehrwert · Machbarkeitsdenken vs verantwortete Strategie",
+      example: {
+        weak: "A flagship demonstration of our innovation capability.",
+        strong: "Saves the 90 seconds a traveller with a 6-minute connection currently spends reading overhead signage.",
+      },
+      seeItHere: "Switch it off: the value line changes to an organisational benefit while the claim bullets stay exactly as confident as before.",
     },
   },
   {
@@ -58,6 +68,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "The concept looks more certain than it is, and the certainty gets funded.",
       curriculum: "Investitionsrisiko · Reifegrad",
+      example: {
+        weak: "Risks: standard delivery risks apply. (Appendix C)",
+        strong: "What we do not know yet: whether travellers will hold a phone up while walking. If they will not, nothing else on this slide matters.",
+      },
+      seeItHere: "Switch it off and the assumption box disappears. Notice that the slide reads better without it.",
     },
   },
   {
@@ -77,6 +92,11 @@ export const GATES: Gate[] = [
         "You build what is possible, and discover afterwards that it was not defensible.",
       curriculum:
         "Unterschied technologisches Machbarkeitsdenken vs verantwortete UX-Strategie",
+      example: {
+        weak: "Technically feasible with existing phone hardware.",
+        strong: "Should we build it? Only if the station permits camera use and the printed signage stays. We are not removing an existing option.",
+      },
+      seeItHere: "Switch it off and read the decision line that replaces it, then read the note underneath it.",
     },
   },
 
@@ -101,6 +121,11 @@ export const GATES: Gate[] = [
         "You test the interface and conclude something about the situation.",
       curriculum:
         "Anforderungen an immersive Prototypen — Nutzungskontext",
+      example: {
+        weak: "Demo recorded in the studio against a white cyclorama.",
+        strong: "Demo recorded in Hall B at 08:40, with the concourse crowd, the glazed roof glare and the departure-board noise present.",
+      },
+      seeItHere: "Switch it off: the concourse disappears and the arrow floats on white, still perfectly correct and no longer evidence of anything.",
     },
   },
   {
@@ -122,6 +147,11 @@ export const GATES: Gate[] = [
       withoutIt: "You measure confusion and call it a learning curve.",
       curriculum:
         "Anforderungen an immersive Prototypen — Interaktionsklarheit",
+      example: {
+        weak: "A row of four identical icon buttons with no labels.",
+        strong: "“Show my route to Platform 7” as the single primary action, with the outcome named in the label.",
+      },
+      seeItHere: "Switch it off: every control keeps working and loses its label. Nothing is disabled, which is the point.",
     },
   },
   {
@@ -144,6 +174,11 @@ export const GATES: Gate[] = [
         "Every finding is contaminated by whether the build happened to hold that day.",
       curriculum:
         "Anforderungen an immersive Prototypen — technische Robustheit",
+      example: {
+        weak: "It works if you don't press the arrow twice.",
+        strong: "Two rapid presses are de-duplicated; lost tracking and lost signal each render a defined state.",
+      },
+      seeItHere: "Switch it off and watch the arrow flicker and the distance label fall back to “--m” intermittently.",
     },
   },
   {
@@ -164,6 +199,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "The pilot's first busy day becomes the first real test, in public.",
       curriculum: "Anforderungen an immersive Prototypen — Belastbarkeit",
+      example: {
+        weak: "We ran one session and it held up fine.",
+        strong: "Sustained for the second hour at ten times the pilot's participant count, with graceful degradation defined per component.",
+      },
+      seeItHere: "Switch it off: the session counter stalls at 12 and prints “queue stalled”, and stress test S5 is held at BREAKS.",
     },
   },
   {
@@ -185,6 +225,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "You leave the session with a feeling and present it as a result.",
       curriculum: "Anforderungen an immersive Prototypen — Testbarkeit",
+      example: {
+        weak: "Everyone in the room agreed it felt faster.",
+        strong: "Completion, errors, time to first heading, abandonment point and turn count are all recorded per session.",
+      },
+      seeItHere: "Switch it off: every readout under the build changes to “no data captured” and the deviation counter reads “unknown”.",
     },
   },
 
@@ -206,6 +251,11 @@ export const GATES: Gate[] = [
         "Read the participant list. Would any of them lose something if this failed?",
       withoutIt: "You measure enthusiasm inside your own building.",
       curriculum: "Testreife · Akzeptanz",
+      example: {
+        weak: "40 volunteers from the operator's head office.",
+        strong: "40 travellers intercepted on the concourse, quota-balanced on age band and journey frequency, including 11 first-time users of the station.",
+      },
+      seeItHere: "Switch it off: every number on the dashboard stays identical and one line appears naming who the participants actually were.",
     },
   },
   {
@@ -226,6 +276,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "A narrow finding becomes a broad claim in the second retelling.",
       curriculum: "Skalierungsreife · Bewertungslogik",
+      example: {
+        weak: "Completion rate: 68%.",
+        strong: "Completion rate 68% — 1 station, English only, daytime, handheld, 40 participants, 6 weeks.",
+      },
+      seeItHere: "Switch it off: the scope statement disappears and the dashboard headline quietly loses “Central Interchange, 6 weeks”.",
     },
   },
   {
@@ -245,6 +300,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "Participation is compliance, and your acceptance data is meaningless.",
       curriculum: "Ethik — Freiwilligkeit",
+      example: {
+        weak: "A consent screen with a single “I agree” button.",
+        strong: "“I decline” routes to the printed-signage equivalent, and the task still completes. The signage stays in place for the whole pilot.",
+      },
+      seeItHere: "Switch it off and open the consent modal: the decline button is gone and the build cannot be reached without agreeing.",
     },
   },
   {
@@ -264,6 +324,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "Every data point collected is a liability, and stopping later costs more than starting later.",
       curriculum: "Ethik — Datenschutz · Governance",
+      example: {
+        weak: "Data protection assessment: scheduled for week 4.",
+        strong: "Assessment signed before session 1. Collected: position and route. Retention: 8 weeks. Access: two named analysts.",
+      },
+      seeItHere: "Switch it off: a line appears at the top of the dashboard and absolutely nothing stops. That is the lesson.",
     },
   },
   {
@@ -281,6 +346,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "Any number can be presented as a success, and usually is.",
       curriculum: "Bewertungslogik · Vergleichbarkeit",
+      example: {
+        weak: "Completed routes: 27 of 40.",
+        strong: "Completed routes 27 of 40, against 24 of 40 on the existing signage, measured the same way two weeks earlier.",
+      },
+      seeItHere: "Switch it off: every comparison figure vanishes and the dashboard asks “better than what?”",
     },
   },
   {
@@ -301,6 +371,11 @@ export const GATES: Gate[] = [
         "You have proven that it works when someone is watching.",
       curriculum:
         "Testaspekt — Transfer in reale Nutzungssituationen (the aspect most often skipped and most often decisive)",
+      example: {
+        weak: "Post-session satisfaction: 4.2 of 5.",
+        strong: "Used again unprompted on a later trip: 9 of 40, measured at day 7 with no observer present.",
+      },
+      seeItHere: "Switch it off: the reuse row is removed and the dashboard prints “Measured in the session only.”",
     },
   },
 
@@ -322,6 +397,11 @@ export const GATES: Gate[] = [
       howToCheck: "List the requirements. Who does each one exclude?",
       withoutIt: "You scale an inequality and call it a rollout.",
       curriculum: "Ethik — Zugänglichkeit, Inklusion · verantwortbar",
+      example: {
+        weak: "Requires: standing position, two hands, normal colour vision.",
+        strong: "High-contrast overlay, seated one-handed layout, and every platform marker carries a label as well as a colour.",
+      },
+      seeItHere: "Switch it off: high-contrast and seated mode both return “Not supported”, and stress test S1 is forced to BREAKS.",
     },
   },
   {
@@ -341,6 +421,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "Every new context is a new project, and the portfolio never compounds.",
       curriculum: "Skalierbarkeit · anschlussfähig",
+      example: {
+        weak: "Station name is compiled into the build.",
+        strong: "Station, language set and accessibility mode are all configuration. A second site goes live in 3 days with no engineering.",
+      },
+      seeItHere: "Switch it off: the configuration panel collapses to one fixed line and stress test S4 is forced to BREAKS.",
     },
   },
   {
@@ -360,6 +445,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "It works, and it never becomes part of how the organisation operates.",
       curriculum: "anschlussfähig · Organisationsfähigkeit",
+      example: {
+        weak: "Departure times are a static list maintained by hand.",
+        strong: "The overlay reads the live timetable feed, and route completions are written back to the operations dashboard.",
+      },
+      seeItHere: "Switch it off: the departure board stops updating and prints “static — no live timetable feed”. The route still works, and it is now an island.",
     },
   },
   {
@@ -380,6 +470,11 @@ export const GATES: Gate[] = [
       withoutIt:
         "Nothing can be stopped, because stopping requires an owner.",
       curriculum: "Governance · governancefähig",
+      example: {
+        weak: "Owner: the innovation steering group.",
+        strong: "Scaling: Head of Passenger Experience. Ethical release: Data Protection Officer — deliberately not the same person.",
+      },
+      seeItHere: "Switch it off: every owner row in the governance panel becomes “TBD” and stress test S6 drops to DEGRADES.",
     },
   },
   {
@@ -399,6 +494,11 @@ export const GATES: Gate[] = [
         "Could a person who was not in the room apply this rule tomorrow?",
       withoutIt: "The only way out is a crisis.",
       curriculum: "governancefähig · Rolle verantwortlicher Führungskräfte",
+      example: {
+        weak: "We will monitor adoption and review regularly.",
+        strong: "Withdraw if completion falls below 70% for two consecutive months, or if any consent complaint is upheld. Watched daily by Station Operations.",
+      },
+      seeItHere: "Switch it off: the stop rule and cadence rows vanish and the product keeps running perfectly.",
     },
   },
   {
@@ -416,6 +516,11 @@ export const GATES: Gate[] = [
       howToCheck: "How long would it take to go back, and who decides?",
       withoutIt: "Every decision to scale is permanent by accident.",
       curriculum: "Governance · Investitionssicherheit",
+      example: {
+        weak: "Rollout is one-way; withdrawal means an outage.",
+        strong: "Running 2.4.0; 2.3.1 stays deployable and is tested weekly; rollback takes under 20 minutes and Station Operations executes it.",
+      },
+      seeItHere: "Switch it off: version and rollback rows vanish and the panel prints “No way back.”",
     },
   },
 ];

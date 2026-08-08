@@ -42,6 +42,10 @@ export interface GateMicroCard {
   howToCheck: string;
   withoutIt: string;
   curriculum: string;
+  /** A worked pair: the same artefact written weakly, then written well. */
+  example: { weak: string; strong: string };
+  /** Where the learner can see this gate at work in the current stage. */
+  seeItHere: string;
 }
 
 export interface Gate {

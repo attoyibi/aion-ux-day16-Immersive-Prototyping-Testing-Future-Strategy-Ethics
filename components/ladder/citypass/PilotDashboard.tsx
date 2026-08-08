@@ -1,6 +1,7 @@
 "use client";
 
 import { PILOT_BASELINES, PILOT_COPY } from "@/content/ladder";
+import { StudyDesignNotes } from "./StudyDesignNotes";
 import type { GateMap } from "@/lib/types";
 
 export interface PilotCounters {
@@ -113,6 +114,10 @@ export function PilotDashboard({
           {PILOT_COPY.scopeStatement}
         </p>
       ) : null}
+
+      <div className="mt-2 border-t border-hairline pt-2">
+        <StudyDesignNotes />
+      </div>
     </div>
   );
 }

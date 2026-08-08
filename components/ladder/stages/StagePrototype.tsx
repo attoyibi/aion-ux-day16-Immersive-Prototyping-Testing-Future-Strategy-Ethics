@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { PROTOTYPE_COPY, PROTOTYPE_DESTINATIONS } from "@/content/ladder";
+import {
+  PROTOTYPE_COPY,
+  PROTOTYPE_DESTINATIONS,
+  PROTOTYPE_DESTINATION_DETAIL,
+} from "@/content/ladder";
 import { ConcourseSvg } from "../citypass/ConcourseSvg";
 import { ArrowOverlay } from "../citypass/ArrowOverlay";
+import { PhoneFrame } from "../citypass/PhoneFrame";
+import { PrototypeGuidance, PrototypeNotes } from "../citypass/PrototypeNotes";
 import type { GateMap } from "@/lib/types";
 
 type Screen = "A" | "B" | "C" | "deadEnd" | "freeEntry";
@@ -87,65 +93,116 @@ export function StagePrototype({
     ? PROTOTYPE_COPY.overlayLabel
     : PROTOTYPE_COPY.overlayLabelDamaged;
 
+  const stepNumber =
+    screen === "A" || screen === "freeEntry"
+      ? 1
+      : screen === "B"
+        ? 2
+        : screen === "C"
+          ? 3
+          : null;
+
+  const screenTitle =
+    screen === "A" || screen === "freeEntry"
+      ? PROTOTYPE_COPY.screenATitle
+      : screen === "B"
+        ? PROTOTYPE_COPY.screenBTitle
+        : screen === "C"
+          ? PROTOTYPE_COPY.screenCTitle
+          : "Route unavailable";
+
+  const specScreen =
+    screen === "B" ? "B" : screen === "C" ? "C" : "A";
+
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="text-d3 font-bold text-navy">
-          {screen === "A" || screen === "freeEntry"
-            ? PROTOTYPE_COPY.screenATitle
-            : screen === "B"
-              ? PROTOTYPE_COPY.screenBTitle
-              : screen === "C"
-                ? PROTOTYPE_COPY.screenCTitle
-                : "Route unavailable"}
-        </h3>
-        <span className="aion-readout text-muted">
-          Screen {screen === "freeEntry" ? "A" : screen === "deadEnd" ? "—" : screen}
-        </span>
-      </div>
+      <PrototypeGuidance found={signals.deviationsSeen.length} />
 
-      {screen === "A" ? (
+      <PhoneFrame
+        step={stepNumber}
+        totalSteps={3}
+        screenLabel="Dead end"
+        showPressure={screen !== "C"}
+      >
         <div className="space-y-3">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {PROTOTYPE_DESTINATIONS.map((destination) => (
+          <h3 className="text-d3 font-bold text-navy">{screenTitle}</h3>
+
+          {screen === "A" ? (
+            <div className="space-y-2">
+              <ul className="space-y-2">
+                {PROTOTYPE_DESTINATIONS.map((destination) => {
+                  const detail =
+                    PROTOTYPE_DESTINATION_DETAIL[destination] ?? null;
+                  return (
+                    <li key={destination}>
+                      <button
+                        type="button"
+                        aria-label={
+                          labelsClear
+                            ? `${destination}. ${detail?.service ?? ""} ${detail?.departs ?? ""}. ${detail?.walk ?? ""}`
+                            : `Unlabelled option: ${destination}`
+                        }
+                        className={`aion-btn w-full flex-col items-stretch gap-[2px] px-3 py-2 text-left ${unlabelled}`}
+                        onClick={() => {
+                          setSelected(destination);
+                          if (destination === "Platform 7") {
+                            setScreen("B");
+                            setArrows(1);
+                            setNotice(null);
+                            onSignal({
+                              ...signals,
+                              sessionCount: signals.sessionCount + 1,
+                            });
+                            announce(
+                              "Screen B: camera view with route arrow.",
+                            );
+                          } else {
+                            setScreen("deadEnd");
+                            recordDeviation(
+                              "P-D1",
+                              PROTOTYPE_COPY.deviations.P_D1,
+                            );
+                          }
+                        }}
+                      >
+                        {labelsClear ? (
+                          <>
+                            <span className="flex flex-wrap items-baseline justify-between gap-x-2">
+                              <span className="text-body font-bold text-navy">
+                                {destination}
+                              </span>
+                              <span className="aion-readout text-muted">
+                                {detail?.departs}
+                              </span>
+                            </span>
+                            <span className="text-small text-navy">
+                              {detail?.service}
+                            </span>
+                            <span className="aion-readout text-muted">
+                              {detail?.walk}
+                            </span>
+                            <span className="text-small text-muted">
+                              {detail?.note}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="block h-[52px]" />
+                        )}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
               <button
-                key={destination}
                 type="button"
-                aria-label={
-                  labelsClear ? destination : `Unlabelled option: ${destination}`
-                }
-                className={`aion-btn ${unlabelled}`}
-                onClick={() => {
-                  setSelected(destination);
-                  if (destination === "Platform 7") {
-                    setScreen("B");
-                    setArrows(1);
-                    setNotice(null);
-                    onSignal({
-                      ...signals,
-                      sessionCount: signals.sessionCount + 1,
-                    });
-                    announce("Screen B: camera view with route arrow.");
-                  } else {
-                    setScreen("deadEnd");
-                    recordDeviation("P-D1", PROTOTYPE_COPY.deviations.P_D1);
-                  }
-                }}
+                className={`aion-btn w-full ${unlabelled}`}
+                aria-label={PROTOTYPE_COPY.freeEntryLabel}
+                onClick={() => setScreen("freeEntry")}
               >
-                {btnLabel(destination)}
+                {btnLabel(PROTOTYPE_COPY.freeEntryLabel)}
               </button>
-            ))}
-          </div>
-          <button
-            type="button"
-            className={`aion-btn ${unlabelled}`}
-            aria-label={PROTOTYPE_COPY.freeEntryLabel}
-            onClick={() => setScreen("freeEntry")}
-          >
-            {btnLabel(PROTOTYPE_COPY.freeEntryLabel)}
-          </button>
-        </div>
-      ) : null}
+            </div>
+          ) : null}
 
       {screen === "freeEntry" ? (
         <div className="space-y-2">
@@ -322,7 +379,7 @@ export function StagePrototype({
           </div>
           <button
             type="button"
-            className={`aion-btn ${unlabelled}`}
+            className={`aion-btn w-full ${unlabelled}`}
             aria-label="Start over"
             onClick={reset}
           >
@@ -330,6 +387,20 @@ export function StagePrototype({
           </button>
         </div>
       ) : null}
+        </div>
+      </PhoneFrame>
+
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <PrototypeNotes screen={specScreen} />
+        <span className="aion-readout text-muted">
+          Now on screen{" "}
+          {screen === "freeEntry"
+            ? "A (free entry)"
+            : screen === "deadEnd"
+              ? "— (dead end)"
+              : screen}
+        </span>
+      </div>
 
       {notice ? (
         <p className="aion-readout border-l-[3px] border-purple bg-lilac px-3 py-2 text-navy">
