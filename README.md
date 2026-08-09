@@ -78,10 +78,24 @@ sampling, participant composition, who is *not* represented, how the baseline
 was measured, and what the pilot cannot tell you. The scope line under the
 device carries the actual limit, which is population and place, never craft.
 
-The **Scalable Solution** really does switch to German, really does
-reconfigure across three stations, and prints both its governance and its
-operations: release and rollback, what is monitored by whom at what frequency,
-and a runbook for the people who will operate it after the team leaves.
+The **Scalable Solution** runs inside release chrome — version, `PROD` channel,
+an armed rollback target and a name on the pager — with a strip that echoes the
+live configuration, so changing a dropdown visibly changes the running product
+rather than a form. Its augmented layer is the pilot's plus everything a
+product earns once other people operate it: a painted route ribbon tapering
+into perspective, bevelled chevrons, floor distance ticks, a billboard carrying
+the live service and departure, a step-free marker, and real occlusion — the
+route is masked out where a structural column stands in front of it, per
+station, so it passes behind the building instead of through it. It really does
+switch to German (every label in the overlay included), really does reconfigure
+across three stations, repaints for high contrast rather than filtering, and
+prints both its governance and its operations: release and rollback, what is
+monitored by whom at what frequency, and a runbook for the people who will
+operate it after the team leaves.
+
+Both camera views hold the concourse viewBox ratio exactly, so the augmented
+layer stays registered to the floor perspective at every width and nothing is
+ever cropped out of frame.
 
 Beside each stage
 sits the **gate rail**: 22 gates, all switched on, each of which visibly damages

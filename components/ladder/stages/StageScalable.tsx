@@ -225,7 +225,10 @@ export function StageScalable({
           </svg>
         </div>
       ) : (
-        <div className="relative h-[290px] overflow-hidden rounded-card border border-hairline">
+        // The box holds the ConcourseSvg viewBox ratio (360:200) exactly, so
+        // "slice" never crops and the augmented layer stays registered to the
+        // floor perspective at every width.
+        <div className="relative aspect-[9/5] overflow-hidden rounded-card border border-hairline">
           <ConcourseSvg
             station={effectiveStation}
             highContrast={highContrast}

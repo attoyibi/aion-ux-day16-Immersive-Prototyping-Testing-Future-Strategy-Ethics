@@ -218,7 +218,8 @@ export function StagePilot({
           {consent === "agreed" && screen === "B" ? (
             <FieldFrame screenLabel="Route active">
               <div className="space-y-2">
-                <div className="relative h-[280px] overflow-hidden rounded-card border border-hairline">
+                {/* Same 360:200 ratio as the concourse, so nothing is cropped. */}
+                <div className="relative aspect-[9/5] min-h-[210px] overflow-hidden rounded-card border border-hairline">
                   <ConcourseSvg />
                   {signalLost || arrowSuppressed ? null : (
                     <ArrowOverlay3D
